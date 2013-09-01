@@ -21,6 +21,15 @@
     min-width: 40em;
     font-family: "Consolas", "Andale Mono", "Courier New";
 }
+.mappa-list {
+    color: #ccc;
+}
+.mappa-list .selected-true{
+    color: #000;
+}
+.mappa-list input {
+    width: 8em;
+}
 
 
 /* PAGE STYLES */

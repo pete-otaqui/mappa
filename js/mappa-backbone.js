@@ -312,7 +312,10 @@ MapView = Backbone.View.extend({
         'dragover': 'dragOver',
         'dragenter': 'dragOver',
         // 'drop': 'drop',
-        'change input': 'changeTool'
+        'change input': 'changeTool',
+        'click .selected-true button': 'deleteArea',
+        'keyup .mappa-list input[name=href]': 'updateAttribute',
+        'keyup .mappa-list input[name=alt]': 'updateAttribute'
     },
     initialize: function() {
         // mess with functions first
@@ -325,6 +328,12 @@ MapView = Backbone.View.extend({
         this.context = this.canvas.getContext('2d');
         this.createAreaViews();
         this.el.addEventListener('drop', this.drop);
+    },
+    deleteArea: function(e) {
+        var index = parseInt(e.target.parentNode.getAttribute('data-index'), 10);
+        console.log(index);
+        this.model.get('areas').at(index).destroy();
+        this.render();
     },
     dragOver: function(e) {
         e.preventDefault();
@@ -358,9 +367,32 @@ MapView = Backbone.View.extend({
         file_reader.readAsDataURL(e.dataTransfer.files[0]);
         return false;
     },
+    updateAttribute: function(e) {
+        var input = e.target;
+        var index = parseInt(input.parentNode.parentNode.getAttribute('data-index'), 10);
+        console.log(index);
+        this.model.get('areas').at(index).set(input.getAttribute('name'), input.value);
+        this.render(true);
+    },
     updateHTML: function() {
         var contents = this.model.getMapTag();
         this.$('textarea').val(contents);
+        if ( !this.dont_render_list ) {
+            this.$('.mappa-list').html(this.getList());
+        }
+    },
+    getList: function() {
+        var list_template = '';
+        list_template += '<% _(areas).each(function(area, index) { %>';
+        list_template += '<li data-index="<%= index %>" class="selected-<%= area.selected %>">';
+            list_template += '<button class="delete">Delete</button> ';
+            list_template += '<span class="shape"><%= area.shape %></span> ';
+            list_template += '<label>href: <input name="href" value="<%= area.href %>" /></label> ';
+            list_template += '<label>alt: <input name="alt" value="<%= area.alt %>" /></label>';
+        list_template += '</li>';
+        list_template += '<% }); %>';
+        var html = _.template(list_template, this.model.toJSON());
+        return html;
     },
     onLoadImage: function() {
         this.canvas.width = this.image.width;
@@ -389,7 +421,8 @@ MapView = Backbone.View.extend({
         }
         this.area_views.push(area_view);
     },
-    render: function() {
+    render: function(dont_render_list) {
+        this.dont_render_list = dont_render_list;
         if ( this.rafId ) {
             webkitCancelAnimationFrame(this.rafId);
         }
