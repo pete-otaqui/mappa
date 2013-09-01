@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Mappa</title>
+        <link rel="stylesheet" href="css/mappa.css" />
+    </head>
+    <body>
+        <div class="root">
+            <div class="container">
+                <header>
+                    <h1>Mappa</h1>
+                </header>
+                <section>
+                    
+                    <div class="mappa">
+                        <canvas class="mappa-canvas" width="800" height="600"></canvas>
+                        <div class="toolbars">
+                            <ul class="points">
+                                <li><label><input type="radio" name="tool" value="move"/> Move</label></li>
+                                <li><label><input type="radio" name="tool" value="delete" /> Delete Point</label></li>
+                            </ul>
+                            <ul class="drawers">
+                                <li><label><input type="radio" name="tool" value="polygon" checked="checked" /> Polygon</label></li>
+                            </ul>
+                        </div>
+
+                </section>
+                <footer>
+
+                </footer>
+            </div>
+        </div>
+        <script src="vendor/jquery.min.js"></script>
+        <script src="js/mappa.js"></script>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+
+
+.mappa-canvas {
+    border: 1px solid #ccc;
+    background-color: #eee;
+}
+
+.mappa-workspace {
+    display: inline-block;
+    vertical-align: top;
+}
+.mappa-output {
+    display: inline-block;
+    vertical-align: top;
+}
+.mappa-html {
+    border: 1px solid #ccc;
+    background-color: #eee;
+    margin: 0;
+    padding: 0;
+    min-width: 40em;
+    font-family: "Consolas", "Andale Mono", "Courier New";
+}
