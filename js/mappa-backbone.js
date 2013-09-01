@@ -217,21 +217,15 @@ Area = Backbone.RelationalModel.extend({
         );
     },
     isMousedOver: function(mx, my) {
- 
         var i, j, moused_over = false;
-
         var points = this.get('points').toJSON();
-     
         for (i = 0, j = points.length - 1; i < points.length; j = i++)
         {
-     
             if (((points[i].y > my) != (points[j].y > my)) && (mx < (points[j].x - points[i].x) * (my - points[i].y) / (points[j].y - points[i].y) + points[i].x))
             {
                 moused_over = !moused_over;
             }
-     
         }
-
         if ( !moused_over ) {
             var isMousedOverPoint = this.isMousedOverPoint;
             points.forEach(function(point) {
@@ -240,7 +234,6 @@ Area = Backbone.RelationalModel.extend({
                 }
             });
         }
-
         return moused_over;
     }
 });
@@ -314,8 +307,9 @@ MapView = Backbone.View.extend({
         'mousedown canvas': 'mouseDown',
         'mouseup canvas': 'mouseUp',
         'dragover': 'dragOver',
-        'dragenter': 'dragOver'
-        // 'drop': 'drop'
+        'dragenter': 'dragOver',
+        // 'drop': 'drop',
+        'change input': 'changeTool'
     },
     initialize: function() {
         // mess with functions first
