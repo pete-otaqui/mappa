@@ -49,3 +49,15 @@ section {
     display: inline-block;
     text-align: left;
 }
+
+footer {
+    color: #ddd;
+    padding: 5em 0;
+    font-size: 80%;
+}
+footer a {
+    color: #ddd;
+}
+footer a:hover {
+    color: #000;
+}
