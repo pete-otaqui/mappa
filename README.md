@@ -13,6 +13,22 @@ Notes
 * Only supports Google Chrome
 
 
+Developing
+----------
+
+Built using HTML5 Canvas, [Backbone](http://backbonejs.org) and [Backbone-Relational](http://backbonerelational.org)
+
+Contributions welcome, particularly:
+
+* Refactoring
+    * mouse / cursor / tool management
+    * pushing logic into views
+* Adding features
+    * Circle / Polygon areas
+* Tests
+    * Preferably using something like mocha / jasmine / etc.
+
+
 License
 -------
 
