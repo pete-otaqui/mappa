@@ -1,5 +1,5 @@
 
-
+/* MAPPA STYLES */
 .mappa-canvas {
     border: 1px solid #ccc;
     background-color: #eee;
@@ -20,4 +20,23 @@
     padding: 0;
     min-width: 40em;
     font-family: "Consolas", "Andale Mono", "Courier New";
+}
+
+
+/* PAGE STYLES */
+
+body, input, select {
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+header, footer {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+section {
+    text-align: center;
+}
+.mappa {
+    display: inline-block;
+    text-align: left;
 }
