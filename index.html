@@ -13,17 +13,22 @@
                 <section>
                     
                     <div class="mappa">
-                        <canvas class="mappa-canvas" width="800" height="600"></canvas>
-                        <div class="toolbars">
-                            <ul class="points">
-                                <li><label><input type="radio" name="tool" value="move"/> Move</label></li>
-                                <li><label><input type="radio" name="tool" value="delete" /> Delete Point</label></li>
-                            </ul>
-                            <ul class="drawers">
-                                <li><label><input type="radio" name="tool" value="polygon" checked="checked" /> Polygon</label></li>
-                            </ul>
+                        <p>Drag and drop an image file to load ... </p>
+                        <div class="mappa-workspace">
+                            <canvas class="mappa-canvas" width="800" height="600"></canvas>
+                            <div class="mappa-toolbars">
+                                <ul class="mappa-points">
+                                    <li><label><input checked="checked" type="radio" name="tool" value="arrow"/> Move / Select</label></li>
+                                    <li><label><input type="radio" name="tool" value="delete" /> Delete Point</label></li>
+                                </ul>
+                                <ul class="mappa-drawers">
+                                    <li><label><input type="radio" name="tool" value="polygon" /> Polygon / Add Points</label></li>
+                                </ul>
+                            </div>
                         </div>
-
+                        <div class="mappa-output">
+                            <textarea class="mappa-html"></textarea>
+                        </div>
                 </section>
                 <footer>
 
@@ -31,6 +36,9 @@
             </div>
         </div>
         <script src="vendor/jquery.min.js"></script>
-        <script src="js/mappa.js"></script>
+        <script src="vendor/underscore.js"></script>
+        <script src="vendor/backbone.js"></script>
+        <script src="vendor/backbone-relational.js"></script>
+        <script src="js/mappa-backbone.js"></script>
     </body>
 </html>
