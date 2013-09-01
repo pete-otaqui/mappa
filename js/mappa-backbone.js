@@ -608,4 +608,4 @@ PolygonView = AreaView.extend({
 });
 
 mapview = new MapView({el:'.mappa'});
-mapview.loadImage('img/increased_risk.png');
+mapview.loadImage('img/default.png');
