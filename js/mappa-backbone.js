@@ -96,10 +96,10 @@ ImageMap = Backbone.RelationalModel.extend({
         type: Backbone.HasMany,
         key: 'areas',
         relatedModel: 'Area',
+        reverseRelation: {
+            key: 'mappa'
+        },
         collectionType: 'Areas'
-        // reverseRelation: {
-        //     key: 'map'
-        // }
     }],
     subModelTypes: {
         'polygon': 'Polygon',
@@ -198,6 +198,9 @@ Area = Backbone.RelationalModel.extend({
         });
         if ( point ) {
             this.get('points').remove(point);
+        }
+        if ( this.get('points').length === 0 && this.collection && this.collection.remove) {
+            this.collection.remove(this);
         }
     },
     isMousedOverPoint: function(mx, my, point, w, h) {
@@ -317,7 +320,7 @@ MapView = Backbone.View.extend({
         this.mouseMove = _.throttle(this.mouseMove, 1000/60);
         // this.updateHTML = _.throttle(this.updateHTML, 1000);
         this.current_tool = TOOL_ARROW;
-        this.model = new ImageMap(map);
+        this.model = new ImageMap();
         this.canvas = this.el.querySelector('canvas');
         this.context = this.canvas.getContext('2d');
         this.createAreaViews();
@@ -506,7 +509,6 @@ MapView = Backbone.View.extend({
         } else {
             this.adding_view = this.moving_view;
         }
-        
         this.moving_view = null;
         this.moving_point = null;
         e.target.style.cursor = '';
@@ -556,6 +558,9 @@ PolygonView = AreaView.extend({
         var points = this.model.get('points').getPoints();
         var r = this.setupContext(context);
 
+        if ( !points[0] ) {
+            return;
+        }
         context.moveTo(points[0].x, points[0].y);
         context.beginPath();
         points.forEach(function(point, index) {
