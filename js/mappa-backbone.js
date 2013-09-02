@@ -82,33 +82,9 @@ var map = {
     ]
 };
 
-(function() {
-    var lastTime = 0;
-    var vendors = ['webkit', 'moz'];
-    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-        window.cancelAnimationFrame =
-          window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
-    }
-
-    if (!window.requestAnimationFrame)
-        window.requestAnimationFrame = function(callback, element) {
-            var currTime = new Date().getTime();
-            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-              timeToCall);
-            lastTime = currTime + timeToCall;
-            return id;
-        };
-
-    if (!window.cancelAnimationFrame)
-        window.cancelAnimationFrame = function(id) {
-            clearTimeout(id);
-        };
-}());
-
 
 /**
+ * Checking browser to set requestAnimationFrame funtion.
  */
 function requestAnimFrame(obj){
     try{
@@ -120,9 +96,11 @@ function requestAnimFrame(obj){
             return window.mozRequestAnimationFrame(obj);
         }
     }
-  return  window.requestAnimationFrame(obj) || window.webkitRequestAnimationFrame(obj) || window.mozRequestAnimationFrame(obj);
 }
 
+/**
+ * Checking browser to set cancelAnimationFrame funtion.
+ */
 function cancelAnimFrame(obj){
     try {
         return window.CancelAnimationFrame(obj);
@@ -133,6 +111,25 @@ function cancelAnimFrame(obj){
             return window.mozCancelAnimationFrame(obj);
         }
     }
+}
+
+/**
+ * Cross-browser support for mouse position.
+ * @return array
+ */
+function getOffsets(e){
+    var mxy = [];
+    if(typeof (e.offsetX) != 'undefined'){
+        mx = e.offsetX;
+        my = e.offsetY;
+    } else {
+        mx = parseInt(e.clientX - $(e.target).offset().left);
+        my = parseInt(e.pageY - $(e.target).offset().top) -2;
+    }
+    //console.log(e.pageY, $(e.target).offset().top);
+    mxy['x'] = mx;
+    mxy['y'] = my;
+    return mxy;
 }
 
 
@@ -220,11 +217,13 @@ Area = Backbone.RelationalModel.extend({
         return _.template(template, model);
     },
     getCoords: function() {
+        //console.log(this.get('points'));
         return this.get('points').reduce(function(memo, coord, index, list) {
             var val = memo + coord.get('x') + ',' + coord.get('y');
             if ( index < list.length - 1 ) {
                 val += ',';
             }
+            //console.log(coord.get('x'));
             return val;
         }, '');
     },
@@ -344,6 +343,7 @@ Points = Backbone.Collection.extend({
     model: Point,
     getPoints: function() {
         return this.models.map(function(point) {
+            //console.log(point);
             return {x: point.get('x'), y: point.get('y')};
         });
     }
@@ -441,6 +441,7 @@ MapView = Backbone.View.extend({
         this.area_views.push(area_view);
     },
     render: function() {
+        //console.log(this.rafRender);
         if ( this.rafId ) {
             //webkitCancelAnimationFrame(this.rafId);
             cancelAnimFrame(this.rafId);
@@ -500,6 +501,9 @@ MapView = Backbone.View.extend({
     },
     mouseMove: function(e) {
         var map_view = this;
+        var mxy = getOffsets(e);
+        e.offsetX = mxy['x'];
+        e.offsetY = mxy['y'];
         if ( this.moving_point ) {
             this.moving_point.set('x', e.offsetX);
             this.moving_point.set('y', e.offsetY);
@@ -514,9 +518,14 @@ MapView = Backbone.View.extend({
     },
     mouseDown: function(e) {
         var map_view = this,
-            mx = e.offsetX,
-            my = e.offsetY,
             moving_view, moving_point;
+            //console.log('Drawing.');
+            var mxy = getOffsets(e);
+            //console.log(mxy);
+            var mx = mxy['x'];
+            var my = mxy['y'];
+            
+            //console.log(parseInt(e.clientX - $(e.target).offset().left));
         if ( this.current_tool === TOOL_ARROW ) {
             this.area_views.forEach(function(area_view, index) {
                 area_view.model.get('points').forEach(function(point) {
@@ -543,6 +552,9 @@ MapView = Backbone.View.extend({
         return false;
     },
     mouseUp: function(e) {
+        var mxy = getOffsets(e);
+        e.offsetX = mxy['x'];
+        e.offsetY = mxy['y'];
         if ( this.adding_view && this.current_tool === TOOL_POLYGON ) {
             this.adding_view.model.get('points').add({
                 x: e.offsetX,
@@ -569,7 +581,7 @@ MapView = Backbone.View.extend({
     changeTool: function(e) {
         if (e.target.checked) {
             this.current_tool = e.target.value;
-            console.log(this.current_tool);
+            //console.log(this.current_tool);
         }
     }
 });
