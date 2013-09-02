@@ -33,3 +33,9 @@ License
 -------
 
 [Apache License](https://github.com/pete-otaqui/mappa/blob/master/LICENSE)
+
+
+Developers
+----------
+[@pate-otaqui](https://github.com/pete-otaqui)
+[@alaabadran](https://github.com/alaabadran)
