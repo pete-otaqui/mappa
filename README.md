@@ -10,7 +10,7 @@ Notes
 -----
 
 * Only polygons are implemented
-* Only supports Google Chrome
+* Only supports WebKit browsers (Google Chrome & Safari)
 
 
 Developing
