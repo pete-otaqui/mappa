@@ -37,5 +37,7 @@ License
 
 Developers
 ----------
+
 [@pate-otaqui](https://github.com/pete-otaqui)
+
 [@alaabadran](https://github.com/alaabadran)
