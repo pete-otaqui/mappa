@@ -3,7 +3,7 @@ mappa
 
 Image Map creation tool in the browser.  Built to be an alternative to Dreamwer's Image Map tools.
 
-[Demo on rawgithub.com](http://rawgithub.com/pete-otaqui/index.html)
+[Demo on rawgithub.com](http://rawgithub.com/pete-otaqui/mappa/master/index.html)
 
 
 Notes
