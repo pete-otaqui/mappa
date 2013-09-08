@@ -10,7 +10,7 @@ Notes
 -----
 
 * Only polygons are implemented
-* Only supports Google Chrome
+* Only supports WebKit browsers (Google Chrome & Safari)
 
 
 Developing
@@ -33,3 +33,11 @@ License
 -------
 
 [Apache License](https://github.com/pete-otaqui/mappa/blob/master/LICENSE)
+
+
+Developers
+----------
+
+[@pate-otaqui](https://github.com/pete-otaqui)
+
+[@alaabadran](https://github.com/alaabadran)
