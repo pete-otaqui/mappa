@@ -234,7 +234,15 @@ MapView = Backbone.View.extend({
         'change input': 'changeTool',
         'click .selected-true button': 'deleteArea',
         'keyup .mappa-list input[name=href]': 'updateAttribute',
-        'keyup .mappa-list input[name=alt]': 'updateAttribute'
+        'keyup .mappa-list input[name=alt]': 'updateAttribute',
+        'paste textarea': 'pasteImageTag'
+    },
+    pasteImageTag: function(e) {
+        this.parseImageTag(e.target.value);
+    },
+    parseImageTag: function(html) {
+        // var $html = this.$(html);
+        alert('Sorry - pasting not supported yet');
     },
     initialize: function() {
         // mess with functions first
