@@ -250,7 +250,6 @@ MapView = Backbone.View.extend({
     },
     deleteArea: function(e) {
         var index = parseInt(e.target.parentNode.getAttribute('data-index'), 10);
-        console.log(index);
         this.model.get('areas').at(index).destroy();
         this.render();
     },
@@ -295,7 +294,6 @@ MapView = Backbone.View.extend({
     updateHTML: function() {
         var contents = this.model.getMapTag();
         this.$('textarea').val(contents);
-        console.log(JSON.stringify(this.model.toJSON()));
         if ( !this.dont_render_list ) {
             this.$('.mappa-list').html(this.getList());
         }
