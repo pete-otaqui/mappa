@@ -46,6 +46,29 @@ label{
 .mappa-list input {
     width: 8em;
 }
+.mappa-tool{
+    position:relative;
+    padding-top:36px;
+}
+.mappa-toolbars{
+    position:absolute;
+    top:0;
+    left:0;
+}
+.mappa-toolbars ul{
+    display: inline-block;
+    margin: 0 64px 0 0;
+    padding:0;
+    list-style: none;
+    float:left;
+}
+.mappa-toolbars li{
+    float:left;
+}
+.mappa-toolbars label{
+    display:inline-block;
+    padding:5px;
+}
 
 
 /* PAGE STYLES */
