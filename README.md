@@ -25,7 +25,7 @@ Contributions welcome, particularly:
     * mouse / cursor / tool management
     * pushing logic into views
 * Adding features
-    * Circle / Polygon areas
+    * Circle / Polygon areas 
 * Tests
     * Preferably using something like mocha / jasmine / etc.
 
