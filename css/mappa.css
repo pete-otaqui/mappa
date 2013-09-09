@@ -67,12 +67,17 @@ section {
 }
 
 footer {
-    color: #ddd;
+    color: #9a9a9a;
     padding: 5em 0;
     font-size: 80%;
 }
+footer .developer{
+    width:200px;
+    height:160px;
+    float:left;
+}
 footer a {
-    color: #ddd;
+    color: #aaa;
 }
 footer a:hover {
     color: #000;

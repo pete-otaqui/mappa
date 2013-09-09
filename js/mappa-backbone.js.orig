@@ -472,8 +472,13 @@ MapView = Backbone.View.extend({
         }
         this.area_views.push(area_view);
     },
+<<<<<<< HEAD
+    render: function() {
+        //console.log(this.rafRender);
+=======
     render: function(dont_render_list) {
         this.dont_render_list = dont_render_list;
+>>>>>>> master
         if ( this.rafId ) {
             //webkitCancelAnimationFrame(this.rafId);
             cancelAnimFrame(this.rafId);
@@ -672,4 +677,8 @@ PolygonView = AreaView.extend({
 });
 
 mapview = new MapView({el:'.mappa'});
+<<<<<<< HEAD
+mapview.loadImage('img/increased_risk.png');
+=======
 mapview.loadImage('img/default.png');
+>>>>>>> master
