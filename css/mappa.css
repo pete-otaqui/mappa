@@ -1,5 +1,21 @@
 
 /* MAPPA STYLES */
+header h1{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size:30px;
+    padding-bottom: 20px;
+    border-bottom: #333 solid 1px;
+}
+header a{
+    color:#c00;
+    text-decoration: none;
+}
+header a:hover {
+    text-decoration: underline;
+}
+label{
+    cursor:pointer;
+}
 .mappa-canvas {
     border: 1px solid #ccc;
     background-color: #eee;
