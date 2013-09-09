@@ -1,86 +1,5 @@
 
-var map = {
-    "name": "map-name",
-    "areas": [
-        {
-            "id": 1,
-            "shape": "polygon",
-            "href": "page.html",
-            "alt": "Link to Page",
-            "selected": false,
-            "points": [
-                {
-                    "id": 1,
-                    "x": 10,
-                    "y": 10
-                },
-                {
-                    "id": 2,
-                    "x": 150,
-                    "y": 50
-                },
-                {
-                    "id": 3,
-                    "x": 20,
-                    "y": 350
-                }
-            ]
-        },
-        {
-            "id": 2,
-            "shape": "polygon",
-            "href": "page2.html",
-            "alt": "Link to Other Page",
-            "selected": false,
-            "points": [
-                {
-                    "id": 4,
-                    "x": 120,
-                    "y": 260
-                },
-                {
-                    "id": 5,
-                    "x": 190,
-                    "y": 260
-                },
-                {
-                    "id": 6,
-                    "x": 190,
-                    "y": 430
-                },
-                {
-                    "id": 7,
-                    "x": 120,
-                    "y": 430
-                }
-            ]
-        },
-        {
-            "id": 3,
-            "shape": "polygon",
-            "href": "page3.html",
-            "alt": "Link to Other Page",
-            "selected": false,
-            "points": [
-                {
-                    "id": 8,
-                    "x": 200,
-                    "y": 100
-                },
-                {
-                    "id": 9,
-                    "x": 240,
-                    "y": 100
-                },
-                {
-                    "id": 10,
-                    "x": 240,
-                    "y": 200
-                }
-            ]
-        }
-    ]
-};
+var map = {"name":"imagemap","areas":[{"points":[{"x":7,"y":55},{"x":18,"y":139},{"x":294,"y":95},{"x":277,"y":56},{"x":306,"y":34},{"x":295,"y":3}],"shape":"polygon"}]};
 
 
 /**
@@ -217,13 +136,11 @@ Area = Backbone.RelationalModel.extend({
         return _.template(template, model);
     },
     getCoords: function() {
-        //console.log(this.get('points'));
         return this.get('points').reduce(function(memo, coord, index, list) {
             var val = memo + coord.get('x') + ',' + coord.get('y');
             if ( index < list.length - 1 ) {
                 val += ',';
             }
-            //console.log(coord.get('x'));
             return val;
         }, '');
     },
@@ -343,7 +260,6 @@ Points = Backbone.Collection.extend({
     model: Point,
     getPoints: function() {
         return this.models.map(function(point) {
-            //console.log(point);
             return {x: point.get('x'), y: point.get('y')};
         });
     }
@@ -366,7 +282,15 @@ MapView = Backbone.View.extend({
         'change input': 'changeTool',
         'click .selected-true button': 'deleteArea',
         'keyup .mappa-list input[name=href]': 'updateAttribute',
-        'keyup .mappa-list input[name=alt]': 'updateAttribute'
+        'keyup .mappa-list input[name=alt]': 'updateAttribute',
+        'paste textarea': 'pasteImageTag'
+    },
+    pasteImageTag: function(e) {
+        this.parseImageTag(e.target.value);
+    },
+    parseImageTag: function(html) {
+        // var $html = this.$(html);
+        alert('Sorry - pasting not supported yet');
     },
     initialize: function() {
         // mess with functions first
@@ -374,7 +298,7 @@ MapView = Backbone.View.extend({
         this.mouseMove = _.throttle(this.mouseMove, 1000/60);
         // this.updateHTML = _.throttle(this.updateHTML, 1000);
         this.current_tool = TOOL_ARROW;
-        this.model = new ImageMap();
+        this.model = new ImageMap(map);
         this.canvas = this.el.querySelector('canvas');
         this.context = this.canvas.getContext('2d');
         this.createAreaViews();
@@ -382,7 +306,6 @@ MapView = Backbone.View.extend({
     },
     deleteArea: function(e) {
         var index = parseInt(e.target.parentNode.getAttribute('data-index'), 10);
-        console.log(index);
         this.model.get('areas').at(index).destroy();
         this.render();
     },
@@ -421,7 +344,6 @@ MapView = Backbone.View.extend({
     updateAttribute: function(e) {
         var input = e.target;
         var index = parseInt(input.parentNode.parentNode.getAttribute('data-index'), 10);
-        console.log(index);
         this.model.get('areas').at(index).set(input.getAttribute('name'), input.value);
         this.render(true);
     },
@@ -613,7 +535,6 @@ MapView = Backbone.View.extend({
     changeTool: function(e) {
         if (e.target.checked) {
             this.current_tool = e.target.value;
-            //console.log(this.current_tool);
         }
     }
 });
