@@ -1,5 +1,21 @@
 
 /* MAPPA STYLES */
+header h1{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size:30px;
+    padding-bottom: 20px;
+    border-bottom: #333 solid 1px;
+}
+header a{
+    color:#c00;
+    text-decoration: none;
+}
+header a:hover {
+    text-decoration: underline;
+}
+label{
+    cursor:pointer;
+}
 .mappa-canvas {
     border: 1px solid #ccc;
     background-color: #eee;
@@ -29,6 +45,29 @@
 }
 .mappa-list input {
     width: 8em;
+}
+.mappa-tool{
+    position:relative;
+    padding-top:36px;
+}
+.mappa-toolbars{
+    position:absolute;
+    top:0;
+    left:0;
+}
+.mappa-toolbars ul{
+    display: inline-block;
+    margin: 0 64px 0 0;
+    padding:0;
+    list-style: none;
+    float:left;
+}
+.mappa-toolbars li{
+    float:left;
+}
+.mappa-toolbars label{
+    display:inline-block;
+    padding:5px;
 }
 
 
