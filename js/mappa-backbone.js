@@ -612,6 +612,8 @@ MapView = Backbone.View.extend({
     },
     changeTool: function(e) {
         if (e.target.checked) {
+            $('.mappa-toolbars label').removeClass();
+            $(e.target).parent().addClass('active');
             this.current_tool = e.target.value;
             //console.log(this.current_tool);
         }
