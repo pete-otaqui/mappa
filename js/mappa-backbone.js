@@ -675,3 +675,4 @@ PolygonView = AreaView.extend({
 
 mapview = new MapView({el:'.mappa'});
 mapview.loadImage('img/default.png');
+$('.move-poly input').prop('checked', true);
