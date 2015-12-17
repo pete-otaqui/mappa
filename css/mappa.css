@@ -1,34 +1,40 @@
-
 /* MAPPA STYLES */
-header h1{
+header h1 {
     font-family: 'Cinzel Decorative', cursive;
-    font-size:30px;
+    font-size: 30px;
     padding-bottom: 20px;
     border-bottom: #333 solid 1px;
 }
-header a{
-    color:#c00;
+
+header a {
+    color: #c00;
     text-decoration: none;
 }
+
 header a:hover {
     text-decoration: underline;
 }
-label{
-    cursor:pointer;
+
+label {
+    cursor: pointer;
 }
+
 .mappa-canvas {
     border: 1px solid #ccc;
     background-color: #eee;
+    max-width: 100%;
 }
 
 .mappa-workspace {
     display: inline-block;
     vertical-align: top;
 }
+
 .mappa-output {
     display: inline-block;
     vertical-align: top;
 }
+
 .mappa-html {
     border: 1px solid #ccc;
     background-color: #eee;
@@ -37,39 +43,46 @@ label{
     min-width: 40em;
     font-family: "Consolas", "Andale Mono", "Courier New";
 }
+
 .mappa-list {
     color: #ccc;
 }
-.mappa-list .selected-true{
+
+.mappa-list .selected-true {
     color: #000;
 }
+
 .mappa-list input {
     width: 8em;
 }
-.mappa-tool{
-    position:relative;
-    padding-top:36px;
-}
-.mappa-toolbars{
-    position:absolute;
-    top:0;
-    left:0;
-}
-.mappa-toolbars ul{
-    display: inline-block;
-    margin: 0 64px 0 0;
-    padding:0;
-    list-style: none;
-    float:left;
-}
-.mappa-toolbars li{
-    float:left;
-}
-.mappa-toolbars label{
-    display:inline-block;
-    padding:5px;
+
+.mappa-tool {
+    position: relative;
+    padding-top: 36px;
 }
 
+.mappa-toolbars {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.mappa-toolbars ul {
+    display: inline-block;
+    margin: 0 64px 0 0;
+    padding: 0;
+    list-style: none;
+    float: left;
+}
+
+.mappa-toolbars li {
+    float: left;
+}
+
+.mappa-toolbars label {
+    display: inline-block;
+    padding: 5px;
+}
 
 /* PAGE STYLES */
 
@@ -81,9 +94,11 @@ header, footer {
     max-width: 1000px;
     margin: 0 auto;
 }
+
 section {
     text-align: center;
 }
+
 .mappa {
     display: inline-block;
     text-align: left;
@@ -94,14 +109,17 @@ footer {
     padding: 5em 0;
     font-size: 80%;
 }
-footer .developer{
-    width:200px;
-    height:160px;
-    float:left;
+
+footer .developer {
+    width: 200px;
+    height: 160px;
+    float: left;
 }
+
 footer a {
     color: #aaa;
 }
+
 footer a:hover {
     color: #000;
 }

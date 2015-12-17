@@ -507,8 +507,13 @@ MapView = Backbone.View.extend({
     },
     mouseUp: function(e) {
         var mxy = getOffsets(e);
-        e.offsetX = mxy['x'];
-        e.offsetY = mxy['y'];
+        
+        var realWidthCanvas = $(this.canvas).width();
+        var realHeightCanvas = $(this.canvas).height();
+
+        e.offsetX = ( mxy['x'] * this.canvas.width ) / realWidthCanvas;
+        e.offsetY = ( mxy['y'] * this.canvas.height ) / realHeightCanvas;
+
         if ( this.adding_view && this.current_tool === TOOL_POLYGON ) {
             this.adding_view.model.get('points').add({
                 x: e.offsetX,
